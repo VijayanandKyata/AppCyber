@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="static/assets/css/data.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <title>Yearly Column Graph</title>
+
+
+
+    <style>
+        /* Sticky Navigation Bar */
+        #header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the transparency as needed */
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1px;
+            margin-left: 40px;
+        }
+
+        .chart-container {
+            width: 70%;
+            margin-left: 20px; /* Adjust spacing between charts */
+        }
+
+        .chart-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            margin-left: 300px;
+        }
+
+        .btn-container {
+            width: 20%;
+            margin-right: 00px; /* Adjust spacing between buttons */
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="logo"><a href="">CyberHack Breach Analysis</a> </div>
+        <div class="hamburger" id="toggle">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar" id="navbar">
+            <ul>
+                <li>
+                    <a href="/viewdata">Home</a>
+                </li>
+                <li>
+                    <a href="/graph">Bar Graph Analysis</a>
+                </li>
+                <li>
+                    <a href="/pie">Pie Chart Analysis</a>
+                </li>
+                <li>
+                    <a href="/barline">Attack Count Analysis</a>
+                </li>
+                <li>
+                    <a href="/yearly">Yealy Analysis</a>
+                </li> 
+                <li>
+                    <a href="/logout">Logout</a>
+                </li> 
+                
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="btn-container">
+            <button class="btn" onclick="window.location.href='/yearly'">Bar Chart</button>
+            <button class="btn" onclick="window.location.href='/yearlyspline'">Spline Chart</button>
+            <button class="btn" onclick="window.location.href='/yearlycolumn'">Column Chart</button>
+        </div>
+        <div class="chart-container">
+            <div class="chart-title">Column Chart Analysis of Yearly Attack Count</div>
+            <canvas id="yearlyColumnChart" width="300" height="150"></canvas>
+        </div>
+    </div>
+    
+    <script>
+        // Get yearly attack counts from Flask route
+        var yearlyAttackCounts = JSON.parse('{{ yearly_attack_counts | tojson | safe }}');
+
+        // Extract years and counts
+        var years = yearlyAttackCounts.map(function(item) {
+            return item[0];
+        });
+        var counts = yearlyAttackCounts.map(function(item) {
+            return item[1];
+        });
+
+        // Generate random colors for each column
+        var colors = [];
+        for (var i = 0; i < years.length; i++) {
+            var r = Math.floor(Math.random() * 256);
+            var g = Math.floor(Math.random() * 256);
+            var b = Math.floor(Math.random() * 256);
+            colors.push(`rgba(${r}, ${g}, ${b}, 0.5)`);
+        }
+
+        // Create a column chart using Chart.js
+        var ctxColumn = document.getElementById('yearlyColumnChart').getContext('2d');
+        var yearlyColumnChart = new Chart(ctxColumn, {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'Yearly Attack Counts',
+                    data: counts,
+                    backgroundColor: colors, // Different colors for each column
+                    borderColor: 'rgba(54, 162, 235, 1)', // Blue color for border
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

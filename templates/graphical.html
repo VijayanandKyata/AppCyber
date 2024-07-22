@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="static/assets/css/data.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <title>Bar Graph Analysis</title>
+
+
+
+    <style>
+        /* Sticky Navigation Bar */
+        #header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the transparency as needed */
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .chart-container {
+            width: 70%; /* Adjust width to fit container */
+            margin-left: 250px; /* Adjust spacing between charts */
+        }
+
+        .chart-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            margin-left: 350px;
+        }
+
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="logo"><a href="">CyberHack Breach Analysis</a> </div>
+        <div class="hamburger" id="toggle">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar" id="navbar">
+            <ul>
+                <li>
+                    <a href="/viewdata">Home</a>
+                </li>
+                <li>
+                    <a href="/graph">Bar Graph Anlysis</a>
+                </li>
+                <li>
+                    <a href="/pie">Pie Chart Anlysis</a>
+                </li>
+                <li>
+                    <a href="/barline">Attack Count Anlysis</a>
+                </li>
+                <li>
+                    <a href="/yearly">Yealy Analysis</a>
+                </li> 
+                <li>
+                    <a href="/logout">Logout</a>
+                </li> 
+                
+            </ul>
+        </nav>
+    </header>
+    <div class="container" id="home">
+        <div class="chart-container">
+            <div class="chart-title">Bar Graph Analysis of Attack Count</div>
+            <canvas id="barChart" width="200" height="90"></canvas>
+        </div>
+    </div>
+    <script>
+        // Get attack counts from Flask route
+        var attackCounts = JSON.parse('{{ attack_counts | tojson | safe }}');
+    
+        // Extract attack types and counts
+        var attackTypes = attackCounts.map(function(item) {
+            return item[0];
+        });
+        var counts = attackCounts.map(function(item) {
+            return item[1];
+        });
+    
+        // Function to generate random dark colors
+        function getRandomDarkColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    
+        // Create an array of random dark colors
+        var colors = [];
+        for (var i = 0; i < attackTypes.length; i++) {
+            colors.push(getRandomDarkColor());
+        }
+    
+        // Create a bar chart using Chart.js
+        var ctxBar = document.getElementById('barChart').getContext('2d');
+        var barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: attackTypes,
+                datasets: [{
+                    label: 'Attack Counts',
+                    data: counts,
+                    backgroundColor: colors, // Assign random dark colors to each bar
+                    borderColor: colors,    // Assign random dark colors to bar borders
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Attack Types',
+                            color: '#911',
+                            font: {
+                                family: 'Comic Sans MS',
+                                size: 20,
+                                weight: 'bold',
+                                lineHeight: 1.2,
+                            },
+                            padding: {top: 20, left: 0, right: 0, bottom: 0}
+                        },
+                        ticks: {
+                            fontSize: 12 // Adjust tick font size as needed
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Count of Attaks',
+                            color: '#191',
+                            font: {
+                                family: 'Times',
+                                size: 20,
+                                style: 'normal',
+                                lineHeight: 1.2
+                            },
+                            padding: {top: 30, left: 0, right: 0, bottom: 0}
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100, // Set maximum value for y-axis to 100
+                            fontSize: 12 // Adjust font size as needed
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+                
+    
+</body>
+</html>

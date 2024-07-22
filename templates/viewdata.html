@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="static/assets/css/data.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>View-Data</title>
+
+
+
+    <style>
+        /* Sticky Navigation Bar */
+        #header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the transparency as needed */
+        }
+        .container {
+    padding: 0px;
+    background: #f8f9fa; /* Light gray background */
+    border-radius: 10px;
+    border: 1px solid #dee2e6; /* Light gray border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.data-table {
+    background: #fff; /* White background */
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Set width to 100% to fill the container */
+    font-size: 12px;
+}
+
+.data-table th, .data-table td {
+    border: 2px solid #9ecaf5; /* Light gray border */
+    padding: 6px; /* Adjust padding as needed */
+}
+
+/* Styles for the table headings */
+.data-table thead th {
+    background-color: #68aef5; /* Light gray background */
+    color: #333; /* Header text color */
+    font-size: 16px; /* Increased font size for headers */
+    font-weight: bold; /* Bold font for headers */
+}
+
+/* Responsive Table */
+@media screen and (max-width: 10000px) {
+    .data-table {
+        overflow-x: auto;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="logo"><a href="">CyberHack Breach Analysis</a> </div>
+        <div class="hamburger" id="toggle">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar" id="navbar">
+            <ul>
+                <li>
+                    <a href="/viewdata">View All Data</a>
+                </li>
+                <li>
+                    <a href="/malware">Malware Data</a>
+                </li>
+                <li>
+                    <a href="/unmalware">Unmalware Data</a>
+                </li>
+                <li>
+                    <a href="#contact">Attack count</a>
+                </li>
+                <li>
+                    <a href="/graph">Graphical Analysis</a>
+                </li> 
+                <li>
+                    <a href="/logout">Logout</a>
+                </li> 
+                
+            </ul>
+        </nav>
+    </header>
+    <div class="container" id="home">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Entity</th>
+                    <th>Year</th>
+                    <th>Records</th>
+                    <th>Organization Type</th>
+                    <th>Methods</th>
+                    <th>URL</th>
+                    <th>Time</th>
+                    <th>Attack Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                    <tr>
+                        <td>{{ record.entity }}</td>
+                        <td>{{ record.year }}</td>
+                        <td>{{ record.records }}</td>
+                        <td>{{ record.organization_type }}</td>
+                        <td>{{ record.methods }}</td>
+                        <td>{{ record.url }}</td>
+                        <td>{{ record.time }}</td>
+                        <td>{{ record.attacktype }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="static/assets/js/index.js"></script>
+</body>
+</html>

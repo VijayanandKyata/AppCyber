@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+section {
+    width: 100vw;
+    min-height: 100vh;
+    Overflow:hidden;
+    Position:relative;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    height: 6rem;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo h2 {
+    font-size: 2.6rem;
+}
+
+header .logo img {
+    width: 4rem;
+    height: 4rem;
+}
+
+/* header nav {
+    
+} */
+header nav ul {
+    display: flex;
+}
+
+header nav ul li {
+    list-style-type: none;
+    margin-right: 3rem;
+}
+
+nav ul li {
+    font-size: 2.0rem;
+}
+
+nav ul li a {
+    color: black;
+}
+
+nav ul li a:hover {
+    color: rgb(114, 224, 146);
+}
+
+header .sign-in-btn .btn {
+    font-size: 1.5rem;
+    border: 2px solid rgb(195, 195, 195);
+    color:black;
+    border-radius: 1rem;
+    padding: 5px 20px;
+}
+header .sign-in-btn{
+    Display:flex;
+    Align-items:center;
+}
+.sign-in-btn .fa-bars{
+    font-size: 3rem;
+   margin-left:3rem;
+    
+}
+
+.grid-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+    padding: 0px 4rem 0px 6rem;
+    margin-top: 0px;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.col-1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.col-1 h3 {
+    font-size: 1.7rem;
+    text-transform: uppercase;
+}
+
+.col-1 h1 {
+    font-size: 5rem;
+}
+
+.col-1 p {
+    font-size: 1.5rem;
+    width: 80%;
+}
+
+.btns {
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    display: inline; */
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+
+}
+
+.btn-1 {
+    background-color: rgb(111, 238, 115);
+    padding: 0.5rem 1.4rem 0.5rem 1.4rem;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    font-size: 1.5rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-2 {
+    border: 2px solid rgb(195, 195, 195);
+    padding: 0.5rem 1.4rem 0.5rem 1.4rem;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    width: 150px;
+    height: 50px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-1:hover {
+    background-color: #2ff1db;
+}
+.btn-2:hover {
+    background-color: #69a3f5;
+}
+.col-2 img {
+    width: 100%;
+}
+
+span {
+    color: rgb(87, 253, 123);
+}
+
+@media only screen and (max-width:800px) {
+html{
+        Font-size:42%;
+    }
+    .grid-two {
+        grid-template-columns: 1fr;
+    }
+
+    .col-1 {
+        grid-row-start: 2;
+    }
+    header nav ul {
+        display:block;
+        Position:absolute;
+       left:-100%;
+       top:6rem; Background:rgba(255,255,255,0.4);
+        width:100%;
+        height:40vh;
+        Text-align:center;
+        Backdrop-filter:blur(2rem);
+        transition:0.5s ease-in-out;
+    }
+    nav ul li {
+    font-size: 2rem;
+    Line-height:50px;  
+}
+.icon{
+    Position:relative;
+}
+.btn-1,.btn-2{
+    Font-size:2rem;
+}
+    
+}
+.text{
+    text-align:justify;
+    font-size:2rem;
+    Padding:2rem;
+}
+.text h1{
+    Text-align:center;
+}
+.yt-link{
+    color:black;
+    Background:rgb(51, 255, 75);
+    Width:300px;
+    height:30px;
+    Position:absolute;
+    left:50%;
+    Margin-top:10px;
+    Transform:translate(-50%);
+    Border-radius:20px;
+    Display:flex;
+    Align-items:center;
+    Justify-content:center;
+}

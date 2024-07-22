@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="static/assets/css/data.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <title>BarLine Graph</title>
+
+    <style>
+        /* Sticky Navigation Bar */
+        #header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the transparency as needed */
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .chart-container {
+            width: 50%; /* Adjust width to fit container */
+            margin-left: 20px; /* Adjust spacing between charts */
+        }
+
+        .chart-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class="logo"><a href="">CyberHack Breach Analysis</a> </div>
+        <div class="hamburger" id="toggle">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar" id="navbar">
+            <ul>
+                <li>
+                    <a href="/viewdata">Home</a>
+                </li>
+                <li>
+                    <a href="/graph">Bar Graph Analysis</a>
+                </li>
+                <li>
+                    <a href="/pie">Pie Chart Analysis</a>
+                </li>
+                <li>
+                    <a href="/barline">Attack Count Analysis</a>
+                </li>
+                <li>
+                    <a href="/yearly">Yearly Analysis</a>
+                </li> 
+                <li>
+                    <a href="/logout">Logout</a>
+                </li> 
+            </ul>
+        </nav>
+    </header>
+    <div class="container" id="home">
+        <div class="chart-container">
+            <div class="chart-title">Bar Graph Analysis of Attack Count</div>
+            <canvas id="barChart" width="200" height="90"></canvas>
+        </div>
+        <div class="chart-container">
+            <div class="chart-title">Line Chart Analysis of Attack Count</div>
+            <canvas id="lineChart" width="200" height="90"></canvas>
+        </div>
+    </div>
+    <script>
+        // Get attack counts from Flask route
+        var attackCounts = JSON.parse('{{ attack_counts | tojson | safe }}');
+    
+        // Extract attack types and counts
+        var attackTypes = attackCounts.map(function(item) {
+            return item[0];
+        });
+        var counts = attackCounts.map(function(item) {
+            return item[1];
+        });
+    
+        // Function to generate random dark colors
+        function getRandomDarkColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    
+        // Create an array of random dark colors
+        var colors = [];
+        for (var i = 0; i < attackTypes.length; i++) {
+            colors.push(getRandomDarkColor());
+        }
+    
+        // Create a bar chart using Chart.js
+        var ctxBar = document.getElementById('barChart').getContext('2d');
+        var barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: attackTypes,
+                datasets: [{
+                    label: 'Attack Counts',
+                    data: counts,
+                    backgroundColor: colors, // Assign random dark colors to each bar
+                    borderColor: colors,    // Assign random dark colors to bar borders
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Create a line chart using Chart.js
+        var ctxLine = document.getElementById('lineChart').getContext('2d');
+        var lineChart = new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                labels: attackTypes,
+                datasets: [{
+                    label: 'Attack Counts',
+                    data: counts,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Light blue background color
+                    borderColor: 'rgba(75, 192, 192, 1)',     // Dark blue line color
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

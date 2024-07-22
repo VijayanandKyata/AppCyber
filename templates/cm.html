@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Confusion Matrix</title>
+  <!-- Add any necessary stylesheets or scripts here -->
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="static/assets/css/grid.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Additional styles if needed */
+    .container {
+      padding-top: 20px;
+      min-height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="row">
+        <h1 style="color: white; text-align: left; margin-left: 100px;font-weight: bold;"><a class="navbar-brand">CyberHack Breaches Prediction</a></h1>
+        <ul class="main-nav js--main-nav" style="margin-right: -800px;">
+          <li><a href="/train">Training</a></li>
+          <li><a href="/cm">ConfusionMatrix</a></li>
+          <li><a href="/pag">Performance Analysis Graph</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/urlhome">CyberHack Breach Prediction</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1 style="color: white; text-align: center;margin-top: 50px;">Confusion Matrix</h1>
+
+    <!-- Embed the confusion matrix image -->
+    <img src="{{ url_for('static', filename='confusion_matrix.png') }}" alt="Confusion Matrix" style="height: 400px; width: auto;margin-left: 300px;">
+
+    
+    <!-- Add any other content or scripts as needed -->
+  </div>
+</body>
+</html>

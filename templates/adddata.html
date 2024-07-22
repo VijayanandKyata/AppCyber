@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>CyberHack Breaches Prediction Training</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="static/assets/css/grid.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+</head>
+<header>
+  <nav>
+    <div class="row">
+          <h1><a class="navbar-brand">CyberHack Breaches Prediction</a></h1>
+        <ul class="main-nav js--main-nav">
+            <li><a href="/services">Services</a></li>
+            <li><a href="/urlhome">CyberHack Breach Prediction</a></li>
+        </ul>
+    </div>
+</nav>
+</header>
+
+<body>
+ 
+  <div class="login">
+    <h4>Upload file to Train</h4>
+    <br>
+    <form action="/process" method="post" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <input type="submit" value="Upload">
+    </form>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/landing.css') }}">
+    <title>Breach Analysis and Detection</title>
+</head>
+
+<body>
+    <section>
+    <header>
+        
+        <div class="logo">
+            
+            <h2>CyberHack Breach Analysis</h2>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/urlhome">CyberHack Breach Detection</a>
+                </li>
+                <li>
+                    <a href="/services">Services</a>
+                </li>
+               
+            </ul>
+        </nav>
+        
+    </header>
+    <div class="grid-two">
+        <div class="col-1">
+            
+            <h1>
+                CyberHack Breach Analysis <span><i class="fa-solid fa-arrow-trend-up"></i></span>
+            </h1>
+            <p>
+                You can Add CyberBreach Data and Analyze(Graphical Analysis)
+            </p>
+            <div class="btns">
+                <a href="/signup" class="btn-1">Sign-Up</a>
+                <a href="/login" class="btn-2">Login</a>
+            </div>
+        </div>
+        <div class="col-2">
+            <img src="../static/assets/animated-stats.svg" alt="logo">
+        </div>
+    </div>
+</section>
+
+<script>
+    let icon=document.querySelector(".icon");
+    let menu=document.querySelector("ul");
+    function menufun(){
+    if(menu.style.left=="-100%"){
+        menu.style.left="0%"
+    }else{
+        menu.style.left="-100%"
+    }
+    }
+</script>
+</body>
+
+</html>

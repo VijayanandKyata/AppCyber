@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="static/assets/css/data.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>ADD Data </title>
+</head>
+
+<body>
+    <header id="header">
+        <div class="logo"><a href="">CyberHack Breach Analysis</a> </div>
+        <div class="hamburger" id="toggle">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar" id="navbar">
+            <ul>
+                <li>
+                    <a href="/viewdata">View All Data</a>
+                </li>
+                <li>
+                    <a href="/malware">Malware Data</a>
+                </li>
+                <li>
+                    <a href="/unmalware">Unmalware Data</a>
+                </li>
+                <li>
+                    <a href="/attackcount">Attack count</a>
+                </li>
+                <li>
+                    <a href="/graph">Graphical Analysis</a>
+                </li> 
+                <li>
+                    <a href="/logout">Logout</a>
+                </li> 
+                
+            </ul>
+        </nav>
+    </header>
+    <div class="container" id="home">
+        <div class="login-right">
+            <img src="static/assets/duplicate-animate.svg" alt="">
+        </div>
+        <div class="login-left">
+            
+            <form  class="signup-form" action="/uploaddata" method="POST">
+                
+                <div class="login-content">
+                    <div class="form-item">
+                        <label for="text">Entity</label>
+                        <input type="text" id="" name="entity" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="text">Year</label>
+                        <input type="text" id="" name="year"  required>
+                    </div>
+                    <div class="form-item">
+                        <label for="text">Records</label>
+                        <input type="text" id="" name="records" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="text">Organization Type</label>
+                        <input type="text" id="" name="organization_type" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="text">Methods</label>
+                        <input type="text" id="methods" name="methods" required><br>
+                    </div>
+                    <div class="form-item">
+                        <label for="text">URL</label>
+                        <input type="text" id="url" name="url" required><br>
+                    </div>
+                    <div class="form-item">
+                        <label for="text">Time</label>
+                        <input type="text" id="time" name="time" required><br>
+                    </div>
+                    
+                        
+                    <input type="submit" class="l_button" value="Add Data">    
+                
+                    
+                    
+                </div>
+                
+            </form>
+        </div>
+        
+    </div>
+
+   
+
+    <script src="static/assets/js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CyberHack Breaches Prediction Training - Display</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="static/assets/css/grid.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Additional styles if needed */
+    .container {
+      padding-top: 20px;
+      
+
+    }
+    /* Change text color to white */
+    table.table.table-striped thead th,
+    table.table.table-striped tbody tr td {
+      color: white;
+    }
+
+    /* Ensure bottom scrollbar is always visible */
+    div.table-responsive {
+      overflow-x: auto;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<header>
+  <nav>
+    <div class="row">
+        <h1 style="color: white; text-align: left; margin-left: 90px;font-weight: bold;"><a class="navbar-brand">CyberHack Breaches Prediction</a></h1>
+
+      <ul class="main-nav js--main-nav" style="margin-right: -800px;">
+        <li><a href="/train">Training</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/urlhome">CyberHack Breach Prediction</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<body>
+  <div class="container">
+    <h4 style="color: white; text-align: center;">CSV Data</h4>
+
+    <br>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            {% for heading in data.columns %}
+              <th>{{ heading }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for index, row in data.iterrows() %}
+            <tr>
+              {% for value in row %}
+                <td>{{ value }}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
